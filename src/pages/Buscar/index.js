@@ -3,7 +3,7 @@ import {
   View, FlatList, TouchableOpacity, Image
 } from 'react-native';
 import {
-  TextInput, Button, Caption, Divider
+  TextInput, Caption, Divider
 } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { getBusca } from '../../apis/apiHome';
@@ -16,16 +16,19 @@ export default function HomeScreen() {
 
   async function search() {
     const response = await getBusca(text);
-    console.tron.log('data', response.data.data);
     setData(response.data.data);
+  }
+
+  function runSearch(Text) {
+    setText(Text);
+    search();
   }
 
   return (
     <View style={{ flex: 1 }}>
-      <TextInput label="Buscar" value={text} onChangeText={Text => setText(Text)} />
-      <Button mode="contained" onPress={() => search()}>
-        Procurar
-      </Button>
+      <View style={{ flexDirection: 'row' }}>
+        <TextInput style={{ width: '100%', backgroundColor: 'transparent' }} label="Buscar" value={text} onChangeText={Text => runSearch(Text)} />
+      </View>
       <FlatList
         // showsVerticalScrollIndicator={false}
         data={data}
@@ -35,7 +38,7 @@ export default function HomeScreen() {
         renderItem={({ item }) => (
           <>
             <TouchableOpacity
-              style={{ margin: 10, padding: 10, backgroundColor: 'transparent' }}
+              style={{ margin: 10, backgroundColor: '#FEFEFE', borderRadius: 5 }}
               onPress={() => navigation.navigate('Educaçao permanente', { item })}
             >
               <Divider />
@@ -46,7 +49,7 @@ export default function HomeScreen() {
                     style={{
                       height: 80,
                       width: 80,
-                      borderRadius: 80,
+                      borderRadius: 5,
                       margin: 10
                     }}
                     source={{ uri: `${item.image}` }}
@@ -56,15 +59,20 @@ export default function HomeScreen() {
                     style={{
                       height: 80,
                       width: 80,
-                      borderRadius: 80,
+                      borderRadius: 5,
                       margin: 10,
-                      borderWidth: 40,
-                      borderColor: '#fff'
+                      backgroundColor: '#CCC'
                     }}
                   />
                 )}
 
-                <Caption style={{ justifyContent: 'center', alignSelf: 'center', maxWidth: 200 }}>
+                <Caption style={{
+                  justifyContent: 'center',
+                  alignSelf: 'center',
+                  maxWidth: 230,
+                  fontSize: 17,
+                }}
+                >
                   {item.post_title}
                 </Caption>
               </View>
