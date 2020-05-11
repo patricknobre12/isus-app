@@ -1,6 +1,6 @@
 import React, { useState, useLayoutEffect } from 'react';
 import {
-  Text, ScrollView, View, StyleSheet
+  Text, ScrollView, View, StyleSheet, Linking
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import {
@@ -13,8 +13,7 @@ import Banner from '../../assets/images/banner.svg';
 import Termometro from '../../assets/icons/estagiosManejo/termometro.svg';
 import Estagio1 from '../../assets/icons/estagiosManejo/estagio01.svg';
 import Estagio2 from '../../assets/icons/estagiosManejo/estagio02.svg';
-import Estagio3 from '../../assets/icons/estagiosManejo/estagio03.svg';
-import Estagio4 from '../../assets/icons/estagiosManejo/estagio03.svg';
+import { Estagio3, Estagio4 } from '../../assets/icons/estagiosManejo/estagio03.svg';
 import Raiox1 from '../../assets/icons/estagiosManejo/raiox1.svg';
 import Raiox2 from '../../assets/icons/estagiosManejo/raiox2.svg';
 import Grafico from '../../assets/icons/estagiosManejo/grafico.svg';
@@ -252,7 +251,9 @@ export default function ClinicalManagement({ navigation }) {
             <View>
                 <Banner style={{ marginVertical: 10 }} />
                 <ClinicalButton label="CONFIRA VÍDEOS DE PARAMENTAÇÃO" />
-                <ClinicalButton label="consulte especialistas! telemedicina" />
+                <TouchableOpacity onPress={() => Linking.openURL('https://wa.me/5585984390220')}>
+                  <ClinicalButton label="consulte especialistas! telemedicina" />
+                </TouchableOpacity>
             </View>
             {/* Card goes here */}
             <View style={{ marginVertical: 16 }}>
