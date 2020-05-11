@@ -13,7 +13,8 @@ import Banner from '../../assets/images/banner.svg';
 import Termometro from '../../assets/icons/estagiosManejo/termometro.svg';
 import Estagio1 from '../../assets/icons/estagiosManejo/estagio01.svg';
 import Estagio2 from '../../assets/icons/estagiosManejo/estagio02.svg';
-import { Estagio3, Estagio4 } from '../../assets/icons/estagiosManejo/estagio03.svg';
+import Estagio3 from '../../assets/icons/estagiosManejo/estagio03.svg';
+import Estagio4 from '../../assets/icons/estagiosManejo/estagio04.svg';
 import Raiox1 from '../../assets/icons/estagiosManejo/raiox1.svg';
 import Raiox2 from '../../assets/icons/estagiosManejo/raiox2.svg';
 import Grafico from '../../assets/icons/estagiosManejo/grafico.svg';
@@ -58,34 +59,51 @@ export default function ClinicalManagement({ navigation }) {
   const CardStage = ({
     isCollapsed, collapsedMethod, cardHeight, stageTitle, title, subtitle, Logo, HideContent, color
   }) => (
-    <Card elevation={4} style={{ marginVertical: 8, MaxHeight: isCollapsed ? (cardHeight) : (172) }}>
+    <Card
+      elevation={4}
+      style={{
+        marginVertical: 8,
+        MaxHeight: isCollapsed ? (cardHeight) : (172)
+      }}
+    >
       <Card.Content style={{ flexDirection: 'column' }}>
-        <View style={{
-          flexDirection: 'row', justifyContent: 'space-between'
-        }}
+        <View
+          style={{
+            flexDirection: 'row', justifyContent: 'space-between'
+          }}
         >
           <View style={{ flex: 1 }}>
-              <Text style={{
-                marginVertical: 7, letterSpacing: 1.5, color: 'rgba(0, 0, 0, 0.87)', fontSize: 10
+            <Text
+              style={{
+                marginVertical: 7,
+                letterSpacing: 1.5,
+                color: 'rgba(0, 0, 0, 0.87)',
+                fontSize: 10
               }}
-              >
-                  { stageTitle }
+            >
+            { stageTitle }
+            </Text>
+            <Text style={{ color, fontSize: 24 }}>{ title }</Text>
+            {
+              subtitle && (
+              <Text style={{ color: 'rgba(0, 0, 0, 0.6)', fontSize: 14, marginVertical: 15 }}>
+                        { subtitle }
               </Text>
-              <Text style={{ color, fontSize: 24 }}>{ title }</Text>
-              {
-                subtitle && <Text style={{ color: 'rgba(0, 0, 0, 0.6)', fontSize: 14, marginVertical: 15 }}>{ subtitle }</Text>
-              }
+              )
+            }
           </View>
+
           <View>
-              <Logo />
+            <Logo />
           </View>
         </View>
         <View>
-            {
-              isCollapsed && <HideContent />
-            }
+          {
+            isCollapsed && <HideContent />
+          }
         </View>
       </Card.Content>
+
       <Card.Actions>
         <Button
           color={color}
@@ -99,19 +117,26 @@ export default function ClinicalManagement({ navigation }) {
   );
 
   const HiddenStage1 = () => (
-    <>
+   <View>
       <View style={{ flexDirection: 'row' }}>
         <Termometro />
       </View>
-      <View style={{ marginVertical: 20, flexDirection: 'row', justifyContent: 'space-around' }}>
-          <View>
-            <Text style={{ color: '#4054B2' }}>Telesaúde</Text>
-          </View>
-          <View>
-              <Text style={{ color: '#4054B2' }}>Plantão Corona Vírus</Text>
-          </View>
+
+      <View
+        style={{
+          marginVertical: 20,
+          flexDirection: 'row',
+          justifyContent: 'space-around'
+        }}
+      >
+        <View>
+          <Text style={{ color: '#4054B2' }}>Telesaúde</Text>
+        </View>
+        <View>
+            <Text style={{ color: '#4054B2' }}>Plantão Corona Vírus</Text>
+        </View>
       </View>
-    </>
+   </View>
   );
 
   const HiddenStage2 = () => (
@@ -151,43 +176,76 @@ export default function ClinicalManagement({ navigation }) {
         ‎• Realizar TC de torax, e se não acessível, realizar Raio-X.
       </Paragraph>
       <Paragraph>
-        ‎• Ofertar tratamento ambulatorial e monitoramento clínico remoto por profissional da saúde se indicada quarentena domiciliar, conforme protocolo.
-        - Indicar internação após análise da gravidade e conforme necessidades de tratamento do paciente.
+       ‎• Ofertar tratamento ambulatorial e monitoramento clínico
+       remoto por profissional da saúde se indicada quarentena domiciliar, conforme protocolo.
+        - Indicar internação após análise da gravidade e conforme necessidades de tratamento do
+      paciente.
       </Paragraph>
     </View>
   );
 
   const HiddenStage3 = () => (
-    <>
+    <View>
       <View style={{ marginTop: 20 }}>
         <Paragraph>{'‎• Ofertar oxigenoterapia se SpO² < 93%. conforme protocolo.'}</Paragraph>
         <Paragraph>- Colher gasométrica arterial em uso de oxigênio.</Paragraph>
-        <Paragraph>- Em caso de má resposta ou piora indicar intubação orotraquel eletiva e transferência para UTI.</Paragraph>
-        <Paragraph style={{ marginVertical: 8 }}>• Administrar ATB para infecção bacteriana 2ª (azitromicina +/- amoxacilina clavulananto) e terapia antiviral para Influenza (oseltamivir) em casos suspeitos dessas condições</Paragraph>
-        <Paragraph>• Considerar corticoterapia,  em caso de resposta inflamatória associada à disfução orgânica mantida  ou progressiva conforme protocolo.</Paragraph>
-        <Paragraph style={{ marginVertical: 8 }}>• Considerar  hidroxicloroquina ou cloroquina conforme protocolo. Checar ECG/Intervalo QT:</Paragraph>
+        <Paragraph>
+        - Em caso de má resposta ou piora indicar intubação orotraquel
+                  eletiva e transferência para UTI.
+        </Paragraph>
+        <Paragraph style={{ marginVertical: 8 }}>
+        • Administrar ATB para infecção bacteriana 2ª (azitromicina +/- amoxacilina clavulananto)
+         e terapia antiviral para Influenza (oseltamivir) em casos suspeitos dessas condições
+        </Paragraph>
+        <Paragraph>
+        • Considerar corticoterapia,  em caso de resposta inflamatória associada à disfução
+        orgânica mantida  ou progressiva conforme protocolo.
+        </Paragraph>
+        <Paragraph style={{ marginVertical: 8 }}>
+        • Considerar  hidroxicloroquina ou cloroquina conforme protocolo. Checar
+        ECG/Intervalo QT:
+        </Paragraph>
         <Paragraph>- Colher gasométrica arterial em uso de oxigênio.</Paragraph>
         <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
           <Grafico />
         </View>
         <Paragraph>‎• Tranferir para UTI em caso de disfunções orgânicas em evolução.</Paragraph>
       </View>
-    </>
+    </View>
   );
 
   const HiddenStage4 = () => (
-    <>
+    <View>
       <View style={{ marginTop: 8 }}>
-        <Paragraph>‎• Utilizar ventilação mecânica (VM) protetora conforme protocolo com individualização de parâmetros,  sedação +/- bloqueio neuro-muscular.</Paragraph>
-        <Paragraph>- Considerar manobras de resgate de hipoxemia refratária (titulação da PEEP e posição prona) conforme protocolo.</Paragraph>
-        <Paragraph>‎• Administrar corticoterapia, em caso de resposta inflamatória associada à difunção orgânica mantida ou progressiva conforme protocolo.</Paragraph>
+        <Paragraph>
+‎
+        • Utilizar ventilação mecânica (VM) protetora conforme protocolo com individualização
+          de parâmetros,  sedação +/- bloqueio neuro-muscular.
+        </Paragraph>
+        <Paragraph>
+        - Considerar manobras de resgate de hipoxemia refratária (titulação da PEEP
+          e posição prona) conforme protocolo.
+        </Paragraph>
+        <Paragraph>
+‎
+          • Administrar corticoterapia, em caso de resposta inflamatória
+        associada à difunção orgânica mantida ou progressiva conforme protocolo.
+        </Paragraph>
         <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
           <Pulmao />
         </View>
-        <Paragraph>‎• Administrar anticoagulação com HBPM se fenômenos trombóticos ou marcadores de coagulação intravascular em progressão conforme protocolo.</Paragraph>
-        <Paragraph>‎• Assegurar visitas horizontais, suporte de telemedicina e boas práticas em terapia intensiva.</Paragraph>
+        <Paragraph>
+‎
+        • Administrar anticoagulação com HBPM se fenômenos trombóticos ou
+        marcadores de coagulação intravascular em progressão conforme protocolo.
+        </Paragraph>
+        <Paragraph>
+‎
+        • Assegurar visitas horizontais, suporte de telemedicina e boas práticas
+        em terapia intensiva.
+        </Paragraph>
       </View>
-    </>
+    </View>
   );
 
   const cardItems = [
