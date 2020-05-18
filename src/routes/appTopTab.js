@@ -1,18 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { useNavigation } from '@react-navigation/native';
+import Education from '../pages/Education';
 import { getCategoriasArquitetura } from '../apis/apiHome';
+// import ProjetosPorCategoria from '../pages/ProjetosPorCategoria';
 
-const Tab = createMaterialTopTabNavigator();
-let genericComponent;
-
-export default function EducationTabScreen(props) {
-  const { route } = props;
-  genericComponent = route.params.type;
-
-  const navigation = useNavigation();
+const EducationTab = createMaterialTopTabNavigator();
+export default function EducationTabScreen() {
   const [categorias, setCategorias] = useState([
     {
       name: 'Menu',
@@ -22,53 +15,15 @@ export default function EducationTabScreen(props) {
     }
   ]);
 
-  React.useLayoutEffect(() => {
-    navigation.setOptions({
-      headerStyle: {
-        backgroundColor: '#4CAF50',
-        elevation: 0,
-        shadowOpacity: 0
-      },
-      headerTintColor: '#FFF',
-      headerTitleAlign: 'center',
-      headerTitle: props.route.name,
-      headerRight: () => (
-        <TouchableOpacity
-          style={{
-            marginHorizontal: 19
-          }}
-          onPress={() => {
-            navigation.navigate('Buscar');
-          }}
-        >
-          <Icon name="magnify" size={28} color="#FFF" />
-        </TouchableOpacity>
-      ),
-      headerLeft: () => (
-        <TouchableOpacity
-          style={{
-            marginHorizontal: 19
-          }}
-          onPress={() => {
-            navigation.toggleDrawer();
-          }}
-        >
-          <Icon name="menu" size={28} color="#FFF" />
-        </TouchableOpacity>
-      )
-    });
-  });
-
   useEffect(() => {
     getCategoriasArquitetura().then((response) => {
-      console.log('response.data[props.route.name]', response.data[props.route.name]);
-      setCategorias(response.data[props.route.name]);
+      setCategorias(response.data['Pesquisa Científica']);
     });
   }, []);
 
   console.tron.log(categorias);
   return (
-    <Tab.Navigator
+    <EducationTab.Navigator
       tabBarOptions={{
         scrollEnabled: true,
         labelStyle: {
@@ -83,13 +38,13 @@ export default function EducationTabScreen(props) {
       }}
     >
       {categorias.map(item => (
-        <Tab.Screen
+        <EducationTab.Screen
           key={item.term_id}
           name={item.name}
-          component={genericComponent}
+          component={Education}
           initialParams={item}
         />
       ))}
-    </Tab.Navigator>
+    </EducationTab.Navigator>
   );
 }
